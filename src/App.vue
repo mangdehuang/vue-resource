@@ -38,15 +38,18 @@ export default {
     Hello
   },
   methods:{
-      getData:function () {
-        this.$http.get('./static/data/data.json').then(function (res) {
+      getData () {
+        this.$http.get('./static/data/data.json').then(res => {
           console.log(res);
-          this.dataList = res.data.data.list;
-        });
+          this.dataList = res.body.data.list;
+        },res => {
+            console.log("error");
+          }
+        );
       }
   },
   computed:{
-    total:function() {
+    total () {
         var totalprice = 0;
       this.dataList.forEach(function(item){
         totalprice += item.price * item.productNumber;
@@ -54,7 +57,7 @@ export default {
       return totalprice;
     }
   },
-  mounted:function () {
+  mounted () {
      let _this = this;
     this.$nextTick(function () {
       _this.getData();
