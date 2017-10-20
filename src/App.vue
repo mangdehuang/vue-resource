@@ -51,7 +51,7 @@ export default {
   computed:{
     total () {
         var totalprice = 0;
-      this.dataList.forEach(function(item){
+      this.dataList.forEach(item => {
         totalprice += item.price * item.productNumber;
       });
       return totalprice;
@@ -59,7 +59,7 @@ export default {
   },
   mounted () {
      let _this = this;
-    this.$nextTick(function () {
+    this.$nextTick( () => {
       _this.getData();
     });
   }
